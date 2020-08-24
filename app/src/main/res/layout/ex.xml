@@ -1,0 +1,2384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    tools:context=".QuizActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="405dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_marginTop="45dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/profilepic"
+                android:src="@drawable/profile_image"/>
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"/>
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="someone@gmail.com"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="400dp"
+            android:layout_marginStart="50dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="275dp"
+            android:layout_marginLeft="30dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="Suspicious0dp" >
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Coins"-->
+<!--                        android:textSize="22sp"/>-->
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/coin"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalCoins"
+                        android:text="125"
+                        android:textStyle="bold"
+                        android:textColor="#f3c70d"
+                        android:paddingTop="10dp"
+                        android:textSize="28sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="Suspicious0dp" >
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:text="Coins"-->
+                    <!--                        android:textSize="22sp"/>-->
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/cash"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalCash"
+                        android:text="2$"
+                        android:textStyle="bold"
+                        android:textColor="#32CD32"
+                        android:paddingTop="10dp"
+                        android:textSize="28sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    tools:ignore="Suspicious0dp" >
+                    <!--                    <TextView-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:text="Coins"-->
+                    <!--                        android:textSize="22sp"/>-->
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/gem"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalgems"
+                        android:text="12"
+                        android:textStyle="bold"
+                        android:textColor="#1f872e"
+                        android:paddingTop="10dp"
+                        android:textSize="28sp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+        <LinearLayout
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15sp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/profile"
+                android:layout_marginLeft="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Profile"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Edit your profile."/>
+            </LinearLayout>
+        </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/quiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/quiz1"
+                    android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Play Quiz"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Play quiz and earn coins."/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+
+            <LinearLayout
+                android:id="@+id/spinAndEarn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/roulette"
+                    android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Spin a wheel"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Spin a wheel to earn coins and cash."/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/scratchAndEarn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/scratch"
+                    android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Scratch card"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Scratch a card to earn coins and cash."/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/watch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/vids"
+                    android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Watch video for gems."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Wartch video and earn gems."/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/purchasecr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/cart"
+                    android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Purchase coins."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Purchase coins to earn more coins."/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/ln_invite_friend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/group"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Invite friends and earn"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/redeem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/cash"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Withdraw your amount"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+            <LinearLayout
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/logout"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Logout"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#E6E6E6"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+<!--Main-->
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:orientation="vertical">-->
+
+<!--&lt;!&ndash;        <androidx.appcompat.widget.Toolbar&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="56dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="@color/colorPrimary"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:minHeight="?actionBarSize"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/toolbar"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:titleTextColor="@color/colorWhite">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="App Name"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="22sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textStyle="bold"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colorWhite"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:gravity="center" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </androidx.appcompat.widget.Toolbar>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <View&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="1dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="#000"/>&ndash;&gt;-->
+
+<!--<ScrollView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginStart="2dp"-->
+<!--            android:layout_marginLeft="2dp"-->
+<!--            android:layout_marginRight="2dp">-->
+
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_marginLeft="6dp"-->
+<!--                android:id="@+id/profilepic"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/profile_image"/>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:padding="10dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/username"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="22sp"-->
+<!--                    android:textColor="@color/colorWhite" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/email"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+
+<!--                <TextView-->
+<!--                    android:layout_marginTop="13dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="BALANCE"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="25sp"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginTop="13dp"-->
+<!--                    >-->
+
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/totalCoins"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColor="@color/colorWhite"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="22sp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="33dp"-->
+<!--                        android:layout_height="33dp"-->
+<!--                        android:src="@drawable/money_stack"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginLeft="8dp"/>-->
+<!--                </LinearLayout>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginTop="13dp"-->
+<!--                    >-->
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/totalCash"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColor="@color/colorWhite"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="22sp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:src="@drawable/cash"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginLeft="12dp"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginTop="13dp"-->
+<!--                    >-->
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/totalgems"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textColor="@color/colorWhite"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textSize="22sp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:src="@drawable/gem"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginLeft="12dp"/>-->
+
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="#E6E6E6"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/profile"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/profile"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Profile"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Edit your profile."/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/quiz"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/quiz1"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Play Quiz"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Play quiz and earn coins."/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/spinAndEarn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/roulette"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Spin a wheel"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Spin a wheel to earn coins and cash."/>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/scratchAndEarn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/scratch"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Scratch card"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Scratch a card to earn coins and cash."/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/watch"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/vids"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Watch video for gems."/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Wartch video and earn gems."/>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/purchasecr"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/cart"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginLeft="15dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Purchase coins."/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:text="Purchase coins to earn more coins."/>-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#E6E6E6"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ln_invite_friend"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/group"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:text="Invite friends and earn"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/redeem"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/cash"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:text="Withdraw your amount"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/logout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="15sp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:src="@drawable/logout"-->
+<!--                android:layout_marginLeft="10dp" />-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:text="Logout"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+<!--</ScrollView>-->
+<!--</LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="140dp"-->
+    <!--            android:id="@+id/questionText"-->
+    <!--            android:textColor="#393737"-->
+    <!--            android:textAlignment="center"-->
+    <!--            android:textSize="28sp"-->
+    <!--            android:padding="10dp"-->
+    <!--            android:gravity="center_horizontal" />-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="120dp"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <Button-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:id="@+id/button1"-->
+    <!--                android:background="#03a9f4"-->
+    <!--                android:textSize="24sp"-->
+    <!--                android:padding="10dp"-->
+    <!--                android:layout_marginRight="10dp"-->
+    <!--                />-->
+
+    <!--            <Button-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:id="@+id/button2"-->
+    <!--                android:background="#03a9f4"-->
+    <!--                android:textSize="24sp"-->
+    <!--                android:padding="10dp"-->
+    <!--                android:layout_marginRight="10dp"-->
+    <!--                />-->
+    <!--        </LinearLayout>-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="120dp"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <Button-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:id="@+id/button3"-->
+    <!--                android:background="#03a9f4"-->
+    <!--                android:textSize="24sp"-->
+    <!--                android:padding="10dp"-->
+    <!--                android:layout_marginRight="10dp"-->
+    <!--                />-->
+
+    <!--            <Button-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:id="@+id/button4"-->
+    <!--                android:background="#03a9f4"-->
+    <!--                android:textSize="24sp"-->
+    <!--                android:padding="10dp"-->
+    <!--                android:layout_marginRight="10dp"-->
+    <!--                />-->
+    <!--        </LinearLayout>-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="50dp"-->
+    <!--            android:padding="5dp"-->
+    <!--            android:gravity="center_horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textAlignment="center"-->
+    <!--                android:text="00:00"-->
+    <!--                android:id="@+id/timer"-->
+    <!--                android:textSize="28sp"-->
+    <!--                android:gravity="center_horizontal" />-->
+
+    <!--        </LinearLayout>-->
+    <!--    </LinearLayout>
+
+
+
+    <!- Sign Up-->
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--android:layout_centerInParent="true"-->
+<!--android:orientation="vertical"-->
+<!--android:fitsSystemWindows="true"-->
+<!--android:background="#000"-->
+<!--tools:context=".RegisterActivity">-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    >-->
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        >-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginBottom="60dp"-->
+<!--            android:orientation="vertical">-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/Title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:fontFamily="cursive"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:text="Sign Up"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:textSize="50sp"-->
+<!--                android:textStyle="bold|italic"></TextView>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:baselineAligned="false">-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textEmail"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:text="Email"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    tools:ignore="MissingConstraints"></TextView>-->
+
+<!--                &lt;!&ndash;    Change id &ndash;&gt;-->
+<!--                <EditText-->
+<!--                    android:id="@+id/editText"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="top"-->
+<!--                    android:hint="email@gmail.com"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:minHeight="35dp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textColorHint="#BDBDBD"-->
+<!--                    android:textSize="17sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/textEmail"-->
+<!--                    tools:ignore="Autofill"></EditText>-->
+
+<!--                <View-->
+<!--                    android:id="@+id/viewEmailDivider"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="#BDBDBD"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/editText"></View>-->
+
+<!--                &lt;!&ndash;    Icon for email&ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageEmail"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/email_icon"-->
+<!--                    android:tint="@color/colorWhite"-->
+<!--                    app:layout_constraintBottom_toTopOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/textEmail"></ImageView>-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textName"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:text="Name"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/viewEmailDivider"></TextView>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/name"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="top"-->
+<!--                    android:hint="Your Name"-->
+<!--                    android:inputType="textPersonName"-->
+<!--                    android:minHeight="35dp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textColorHint="#BDBDBD"-->
+<!--                    android:textSize="17sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/textName"-->
+<!--                    tools:ignore="Autofill"></EditText>-->
+
+
+<!--                <View-->
+<!--                    android:id="@+id/viewPassDivider"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="#BDBDBD"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/name"></View>-->
+
+<!--                &lt;!&ndash;    Icon for name&ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imagePassword"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/user"-->
+<!--                    android:tint="@color/colorWhite"-->
+<!--                    app:layout_constraintBottom_toTopOf="@id/viewPassDivider"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/viewPassDivider"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/textName"></ImageView>-->
+
+
+<!--                &lt;!&ndash;    Confirm password&ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/textPassword2"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:text="Password"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewPassDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imagePassword"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/viewPassDivider"></TextView>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/editTextPassword"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="top"-->
+<!--                    android:hint="******"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:minHeight="35dp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textColorHint="#BDBDBD"-->
+<!--                    android:textSize="17sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewPassDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imagePassword"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/textPassword2"-->
+<!--                    tools:ignore="Autofill"></EditText>-->
+
+
+<!--                <View-->
+<!--                    android:id="@+id/viewPassDivider2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="#BDBDBD"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/editTextPassword"></View>-->
+
+<!--                &lt;!&ndash;    Icon for email&ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imagePassword2"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/password"-->
+<!--                    android:tint="@color/colorWhite"-->
+<!--                    app:layout_constraintBottom_toTopOf="@id/viewPassDivider2"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/viewPassDivider2"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/textPassword2"></ImageView>-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/button"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="45dp"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="@drawable/button_background"-->
+<!--                    android:onClick="register"-->
+<!--                    android:stateListAnimator="@null"-->
+<!--                    android:text="Sign Up"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="17sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/viewPassDivider2"></Button>-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/login_page"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="25dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:onClick="goToLogin"-->
+<!--                    android:text="Already have an account?  Log In here"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/button"-->
+<!--                    tools:ignore="OnClick"-->
+<!--                    tools:layout_editor_absoluteX="50dp"></TextView>-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--        </LinearLayout>-->
+
+
+<!--    </ScrollView>-->
+
+<!--</LinearLayout>-->
+
+
+
+
+<!--</LinearLayout>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Login -->
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:layout_centerInParent="true"-->
+<!--android:background="#000"-->
+<!--android:orientation="vertical"-->
+<!--android:fitsSystemWindows="true"-->
+<!--tools:context=".LoginActivity">-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginBottom="55dp"-->
+<!--            android:orientation="vertical">-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/Title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="55dp"-->
+<!--                android:layout_marginBottom="50dp"-->
+<!--                android:fontFamily="cursive"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:text="Log In"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:textSize="50sp"-->
+<!--                android:textStyle="bold|italic"></TextView>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="10dp">-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textEmail"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="65dp"-->
+<!--                    android:text="Email"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    tools:ignore="MissingConstraints"></TextView>-->
+
+<!--                &lt;!&ndash;    Change id &ndash;&gt;-->
+<!--                <EditText-->
+<!--                    android:id="@+id/editText"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="top"-->
+<!--                    android:hint="email@gmail.com"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:minHeight="35dp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textColorHint="#BDBDBD"-->
+<!--                    android:textSize="17sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/textEmail"-->
+<!--                    tools:ignore="Autofill"></EditText>-->
+
+<!--                <View-->
+<!--                    android:id="@+id/viewEmailDivider"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="#BDBDBD"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/editText"></View>-->
+
+<!--                &lt;!&ndash;    Icon for email&ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageEmail"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/email_icon"-->
+<!--                    android:tint="@color/colorWhite"-->
+<!--                    app:layout_constraintBottom_toTopOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/textEmail"></ImageView>-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textPassword"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginTop="50dp"-->
+<!--                    android:text="Password"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/viewEmailDivider"></TextView>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/editTextPassword"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="top"-->
+<!--                    android:hint="******"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:minHeight="35dp"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textColorHint="#BDBDBD"-->
+<!--                    android:textSize="17sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/viewEmailDivider"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/imageEmail"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/textPassword"-->
+<!--                    tools:ignore="Autofill"></EditText>-->
+
+<!--                <View-->
+<!--                    android:id="@+id/viewPassDivider"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="#BDBDBD"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/editTextPassword"></View>-->
+
+<!--                &lt;!&ndash;    Icon for email&ndash;&gt;-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imagePassword"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:contentDescription="@string/app_name"-->
+<!--                    android:src="@drawable/password"-->
+<!--                    android:tint="@color/colorWhite"-->
+<!--                    app:layout_constraintBottom_toTopOf="@id/viewPassDivider"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/viewPassDivider"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/textPassword"></ImageView>-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/button"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="45dp"-->
+<!--                    android:stateListAnimator="@null"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:layout_marginEnd="50dp"-->
+<!--                    android:background="@drawable/button_background"-->
+<!--                    android:text="Login"-->
+<!--                    android:onClick="loginUser"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/viewPassDivider"></Button>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textForgotPassword"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:onClick="forgotPassword"-->
+<!--                    android:text="Forgot Password?"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/button">-->
+
+<!--                </TextView>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/login_page"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="25dp"-->
+<!--                    android:layout_marginBottom="50dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:onClick="goToRegister"-->
+<!--                    android:text="Don't have an account? Sign Up here"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/textForgotPassword"-->
+<!--                    tools:layout_editor_absoluteX="50dp"></TextView>-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--        </LinearLayout>-->
+
+
+<!--    </ScrollView>-->
+
+<!--</LinearLayout>-->
+
+
+<!--</LinearLayout>-->
+
+
+
+<!--Main activity-->
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:background="@color/colorPrimary"-->
+<!--tools:context=".MainActivity">-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginTop="10dp">-->
+
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/profilepic"-->
+<!--            android:layout_width="90dp"-->
+<!--            android:layout_height="90dp"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:src="@drawable/profile_image"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/logo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="App Name"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:textSize="25sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="25sp"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_below="@+id/logo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Your Name"-->
+<!--            android:id="@+id/name"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="10dp"/>-->
+<!--        &lt;!&ndash;         Later on deal with coins...   &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+<!--    </RelativeLayout>-->
+
+<!--    <GridLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:columnCount="2"-->
+<!--        android:rowCount="4"-->
+<!--        android:layout_marginBottom="35dp"-->
+<!--        android:alignmentMode="alignMargins"-->
+<!--        android:columnOrderPreserved="false">-->
+
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp"-->
+<!--                android:id="@+id/profile">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/profile"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Profile"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp"-->
+<!--                android:id="@+id/quiz">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/quiz1"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Quiz"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:id="@+id/spinAndEarn"-->
+<!--                android:padding="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:src="@drawable/roulette"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Spin and Earn"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:id="@+id/scratchAndEarn"-->
+<!--                android:padding="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/scratch"-->
+<!--                    android:padding="10dp"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Scratch and earn"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/vids"-->
+<!--                    android:padding="10dp"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Earning video"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/group"-->
+<!--                    android:padding="10dp"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Invite and earn"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/cart"-->
+<!--                    android:padding="10dp"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Buy coins"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            app:cardElevation="30dp"-->
+<!--            app:contentPadding="10dp"-->
+<!--            >-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/cash"-->
+<!--                    android:padding="10dp"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Reedem"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:layout_marginBottom="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+
+<!--    </GridLayout>-->
+<!--</LinearLayout>-->
+
+<!--</ScrollView>-->
+
+
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:background="@color/colorPrimary"-->
+<!--tools:context=".MainActivity">-->
+
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginTop="10dp">-->
+
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/profilepic"-->
+<!--            android:layout_width="90dp"-->
+<!--            android:layout_height="90dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:src="@drawable/profile_image"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/logo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="App Name"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:textSize="25sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="25sp"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_below="@+id/logo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Your Name"-->
+<!--            android:id="@+id/name"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginTop="10dp"/>-->
+<!--        &lt;!&ndash;         Later on deal with coins...   &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+<!--    </RelativeLayout>-->
+
+
+<!--    <GridLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:columnCount="2"-->
+<!--        android:rowCount="4"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:alignmentMode="alignMargins"-->
+<!--        android:useDefaultMargins="true"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:columnOrderPreserved="false">-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:id="@+id/profile"-->
+<!--                android:gravity="center">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/profile"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Profile"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/quiz">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/quiz1"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Play Quiz"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/spinAndEarn">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/roulette"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Spin and Earn"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/scratchAndEarn">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/scratch"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Scratch and Earn"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/watchAndEarn">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/vids"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Watch and Earn"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/inviteAndEarn">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/group"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Invite and Earn"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/buy">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/cart"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Purchase coins"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="170dp"-->
+<!--            android:layout_height="170dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:cardElevation="5dp"-->
+<!--            app:cardBackgroundColor="#2d2d2d"-->
+<!--            android:layout_margin="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/redeem">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="64dp"-->
+<!--                    android:src="@drawable/cash"-->
+<!--                    android:layout_marginTop="18dp"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Redeem"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/colorWhite"-->
+<!--                    android:layout_marginTop="20dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+<!--    </GridLayout>-->
+
+<!--</LinearLayout>-->
+
+<!--</ScrollView>-->

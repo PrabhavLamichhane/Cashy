@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".SpinAndEarnActivity">
+
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="15dp"-->
+<!--        >-->
+<!--        <LinearLayout-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/btn_back"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/back_button"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:tint="@color/colorTints"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/nameTv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="@color/colorTints"-->
+<!--                android:textSize="28sp"-->
+<!--                android:textAlignment="center"-->
+<!--                android:text="SPIN WHEEL"-->
+<!--                android:layout_marginRight="26sp"-->
+<!--                android:gravity="center_horizontal" />-->
+<!--        </LinearLayout>-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
+
+
+    <rubikstudio.library.LuckyWheelView
+        android:id="@+id/luckywheel"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:lkwCenterImage="@drawable/star"
+        android:layout_centerHorizontal="true"
+        app:lkwBackgroundColor="#FF9800"
+        app:lkwCursor="@drawable/ic_cursor"
+        app:lkwTopTextColor="@color/colorWhite"
+        app:lkwTopTextSize="18sp"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal" />
+
+
+
+
+<!--    <Button-->
+<!--        android:id="@id/spin"-->
+<!--        android:layout_below="@id/luckywheel"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="35dp"-->
+<!--        android:background="@drawable/round_corner"-->
+<!--        android:backgroundTint="#32CD32"-->
+<!--        android:text="Spin Now"-->
+<!--        android:stateListAnimator="@null"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:textColor="@color/colorWhite"-->
+<!--        android:padding="16dp"-->
+<!--        android:textSize="32sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:onClick="playGame"-->
+<!--        android:layout_marginLeft="30dp" />-->
+
+    <Button
+        android:id="@+id/spin"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/round_corner"
+        android:backgroundTint="@color/button"
+        android:text="Spin"
+        android:stateListAnimator="@null"
+        android:layout_below="@id/luckywheel"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:onClick="playGame"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    tools:context=".ScratchAndEarnActivity">
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/correct"-->
+<!--        android:layout_width="500dp"-->
+<!--        android:layout_height="500dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginStart="14dp"-->
+<!--        android:layout_marginEnd="14dp"-->
+<!--        android:layout_marginTop="65dp"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:background="#D3D3D3"-->
+<!--        app:cardCornerRadius="12dp"-->
+
+<!--        app:cardElevation="5dp"-->
+<!--        android:layout_marginLeft="4dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:background="#F3F3F3">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="65dp"-->
+<!--                android:text="CONGRATULATIONS!"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:textAlignment="center"-->
+<!--                android:background="#f3c70d"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="33sp"-->
+<!--                android:textStyle="bold"/>-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/trophy"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="30dp"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="65dp"-->
+<!--                android:text="You won"-->
+<!--                android:textColor="#000"-->
+<!--                android:textAlignment="center"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="55sp"-->
+<!--                android:layout_marginTop="17dp"-->
+<!--                android:textStyle="bold"/>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="120dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center"-->
+<!--                >-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/reward"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="#f3c70d"-->
+<!--                    android:textSize="65sp"-->
+<!--                    android:textStyle="bold"/>-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="85dp"-->
+<!--                    android:layout_height="85dp"-->
+<!--                    android:id="@+id/rewardicon"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                     />-->
+
+
+<!--            </LinearLayout>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/scratchAgain"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:background="@drawable/round_corner"-->
+<!--                android:backgroundTint="#32CD32"-->
+<!--                android:text="Scratch Again"-->
+<!--                android:stateListAnimator="@null"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="30dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="30dp"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:padding="16dp"-->
+<!--                android:textSize="24sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginLeft="30dp" />-->
+<!--        </LinearLayout>-->
+
+<!--        <com.anupkumarpanwar.scratchview.ScratchView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:id="@+id/scratchView"-->
+<!--            app:overlay_image="@drawable/scratch_card"-->
+<!--            app:overlay_width="210dp"-->
+<!--            app:overlay_height="210dp"/>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/correct"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="40dp"
+        app:cardElevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#F3F3F3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONGRATULATIONS!"
+                android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:textAlignment="center"
+                android:background="#f3c70d"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You won"
+                android:textColor="#32CD32"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_marginTop="17dp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/trophy"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                >
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/plus"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="+"-->
+                <!--                    android:textColor="#f3c70d"-->
+                <!--                    android:textSize="50sp"-->
+                <!--                    android:textStyle="bold"/>-->
+
+                <TextView
+                    android:id="@+id/reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500"
+                    android:textColor="#f3c70d"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:id="@+id/rewardicon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/coin" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/getReward1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#32CD32"
+                android:text="Get Rewards"
+                android:stateListAnimator="@null"
+                android:onClick="exit"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp" />
+
+
+        </LinearLayout>
+
+                <com.anupkumarpanwar.scratchview.ScratchView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/scratchView"
+                    app:overlay_image="@drawable/scratch_card"
+                    app:overlay_width="210dp"
+                    app:overlay_height="210dp"/>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

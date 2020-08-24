@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "672766346090",
+    "firebase_url": "https://cashy-5b27f.firebaseio.com",
+    "project_id": "cashy-5b27f",
+    "storage_bucket": "cashy-5b27f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672766346090:android:ced5c1234b4e5e39af1b13",
+        "android_client_info": {
+          "package_name": "com.example.cashy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672766346090-jmmgbr9c6upp9jgikb7vf0j5lm66a4q7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cashy",
+            "certificate_hash": "5c14b726d7622360b8f6bb921d7d3c74018e0b96"
+          }
+        },
+        {
+          "client_id": "672766346090-9nh6lgm8to3ho3fa6qaesjis7jntcc77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqh5BWE_TiSA7S6xjZBM5AOQ5Ssd0K35Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672766346090-9nh6lgm8to3ho3fa6qaesjis7jntcc77.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

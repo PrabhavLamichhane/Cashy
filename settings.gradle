@@ -1,0 +1,2 @@
+rootProject.name='Cashy'
+include ':app', ':luckywheel', ':scratchview'

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Invite">
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:background="@color/colorWhite">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Invite And Earn"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold"-->
+<!--            />-->
+
+<!--        </RelativeLayout>-->
+
+
+
+<!--    </androidx.appcompat.widget.Toolbar>-->
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/gift"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Your Refer Code"
+        android:minWidth="150dp"
+        android:gravity="center_horizontal"
+        android:textSize="33sp"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/referCode"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Cashy"
+        android:background="@drawable/refer_bg"
+        android:minWidth="160dp"
+        android:gravity="center_horizontal"
+        android:textSize="22sp"
+        android:padding="12dp"
+        android:layout_below="@+id/referCode"
+        android:id="@+id/referCodeTv"/>
+
+    <Button
+        android:id="@+id/redeemCode"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner"
+        android:backgroundTint="#FFEB3B"
+        android:layout_above="@id/invite"
+        android:text="Redeem code"
+        android:stateListAnimator="@null"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp" />
+
+    <Button
+        android:id="@+id/invite"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner"
+        android:backgroundTint="@color/button"
+        android:text="Get Rewards"
+        android:layout_marginBottom="55dp"
+        android:stateListAnimator="@null"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp" />
+
+</RelativeLayout>
