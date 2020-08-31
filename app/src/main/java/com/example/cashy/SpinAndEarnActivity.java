@@ -74,13 +74,13 @@ public class SpinAndEarnActivity extends AppCompatActivity {
         // Adding items to spin wheel
         // user function to remove repeated code
         final LuckyItem item1 = new LuckyItem();
-        item1.topText = "500";
+        item1.topText = String.valueOf(Math.round((Math.random()*(500-100)+100)/10)*10);
         item1.icon = R.drawable.coin;
         item1.color = Color.parseColor("#f3c70d");
         items.add(item1);
 
         final LuckyItem item2 = new LuckyItem();
-        item2.topText = "3$";
+        item2.topText = String.format("%.02f",((Math.random()*(2-0.25)+0.25)/10)*10)+"$";//(String.format("%.02f", amount)+"$")
         item2.icon = R.drawable.cash;
         item2.color = Color.parseColor("#85bb65");
         items.add(item2);
@@ -98,19 +98,19 @@ public class SpinAndEarnActivity extends AppCompatActivity {
         items.add(item4);
 
         final LuckyItem item5 = new LuckyItem();
-        item5.topText = "10";
+        item5.topText = String.valueOf(Math.round((Math.random()*(20-5)+5)/10)*10);
         item5.icon = R.drawable.gem;
         item5.color = Color.parseColor("#1f872e");
         items.add(item5);
 
         final LuckyItem item6 = new LuckyItem();
-        item6.topText = "350";
+        item6.topText = String.valueOf(Math.round((Math.random()*(700-300)+300)/10)*10);
         item6.icon = R.drawable.coin;
         item6.color = Color.parseColor("#f3c70d");
         items.add(item6);
 
         final LuckyItem item7 = new LuckyItem();
-        item7.topText = "2$";
+        item7.topText = String.format("%.02f",((Math.random()*(1-0.25)+0.25)/10)*10)+"$";
         item7.icon = R.drawable.cash;
         item7.color = Color.parseColor("#85bb65");
         items.add(item7);
@@ -129,19 +129,19 @@ public class SpinAndEarnActivity extends AppCompatActivity {
 
 
         final LuckyItem item10 = new LuckyItem();
-        item10.topText = "50";
+        item10.topText = String.valueOf(Math.round((Math.random()*(12-5)+5)/10)*10);
         item10.icon = R.drawable.gem;
         item10.color = Color.parseColor("#1f872e");
         items.add(item10);
 
         final LuckyItem item11 = new LuckyItem();
-        item11.topText = "1$";
+        item11.topText = String.format("%.02f",((Math.random()*(2-0.5)+0.5)/10)*10)+"$";
         item11.icon = R.drawable.cash;
         item11.color = Color.parseColor("#85bb65");
         items.add(item11);
 
         final LuckyItem item12 = new LuckyItem();
-        item12.topText = "800";
+        item12.topText = String.valueOf(Math.round((Math.random()*(250-50)+50)/10)*10);
         item12.icon = R.drawable.coin;
         item12.color = Color.parseColor("#f3c70d");
         items.add(item12);
@@ -257,7 +257,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                       showPositivePopup(topText,item);
+                        showPositivePopup(topText,item);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -327,7 +327,6 @@ public class SpinAndEarnActivity extends AppCompatActivity {
             } else {
                 rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.gem));
             }
-
             reward.setTextColor(Color.parseColor("#1f872e"));
             getReward.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -349,6 +348,9 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent quizIntent = new Intent(SpinAndEarnActivity.this,QuizActivity.class);
+                    quizIntent.putExtra("coins",String.valueOf(mCoins));
+                    quizIntent.putExtra("cash",String.valueOf(mCash));
+                    quizIntent.putExtra("gems",String.valueOf(mGems));
                     startActivity(quizIntent);
                     finish();
                 }
@@ -363,8 +365,11 @@ public class SpinAndEarnActivity extends AppCompatActivity {
             getReward.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent quizIntent = new Intent(SpinAndEarnActivity.this,ScratchAndEarnActivity.class);
-                    startActivity(quizIntent);
+                    Intent intent = new Intent(SpinAndEarnActivity.this,ScratchAndEarnActivity.class);
+                    intent.putExtra("coins",String.valueOf(mCoins));
+                    intent.putExtra("cash",String.valueOf(mCash));
+                    intent.putExtra("gems",String.valueOf(mGems));
+                    startActivity(intent);
                     finish();
                 }
             });
@@ -383,8 +388,11 @@ public class SpinAndEarnActivity extends AppCompatActivity {
             getReward.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent quizIntent = new Intent(SpinAndEarnActivity.this,SpinAndEarnActivity.class);
-                    startActivity(quizIntent);
+                    Intent intent = new Intent(SpinAndEarnActivity.this,SpinAndEarnActivity.class);
+                    intent.putExtra("coins",String.valueOf(mCoins));
+                    intent.putExtra("cash",String.valueOf(mCash));
+                    intent.putExtra("gems",String.valueOf(mGems));
+                    startActivity(intent);
                     finish();
                 }
             });

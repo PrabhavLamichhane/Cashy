@@ -7,38 +7,41 @@
     android:orientation="vertical"
     tools:context=".ProfileActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        >
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_button"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:tint="@android:color/white"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="People"
-            android:textSize="20sp"
-            android:textColor="@color/colorWhite"
-            android:gravity="center_vertical" />
-    </androidx.appcompat.widget.Toolbar>
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/colorPrimaryDark"-->
+<!--        >-->
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/back_button"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:tint="@android:color/white"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="People"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:gravity="center_vertical" />-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:background="@color/colorPrimary"
         android:layout_gravity="center_horizontal">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_profile"
             android:transitionName="image"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -57,9 +60,11 @@
             android:layout_alignRight="@id/image_profile" />
     </RelativeLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -112,7 +117,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:textSize="13sp"
                     android:textColor="#292727"
                     android:text="You can chang your name at any moment."/>
@@ -165,10 +169,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
+                android:layout_marginTop="10dp"
                 android:textColor="@android:color/black"
                 android:text="Email is just for password recovery"/>
 
+
         </LinearLayout>
+
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EAEAEA"/>
 
 </LinearLayout>

@@ -84,7 +84,7 @@ public class QuizActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-
+        score.setVisibility(View.VISIBLE);
 
 
         alreadyChosen = new HashSet<Integer>();
@@ -640,7 +640,7 @@ public class QuizActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 //                        sendToResultActivity("correct");
                         // show result_popup_positive
-                        showPositivePopup(mCoins);
+                        showPositivePopup(correct*100);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

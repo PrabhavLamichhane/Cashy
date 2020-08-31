@@ -49,7 +49,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout spinAndEarn,scratchAndEarn,playQuiz,profile,logout,watchAds,purchase,invite;
+    LinearLayout spinAndEarn,scratchAndEarn,playQuiz,profile,logout,watchAds,purchase,invite,withdraw;
     ImageView profilePic;
     TextView uName,uemail,uCoins,uCash,uGems;
     String myUid;
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         watchAds = findViewById(R.id.watch);
         purchase = findViewById(R.id.purchasecr);
         invite = findViewById(R.id.ln_invite_friend);
+        withdraw = findViewById(R.id.redeem);
 
         profilePic = findViewById(R.id.profilepic);
         uName = findViewById(R.id.username);
@@ -230,6 +231,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,Invite.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,PaymentActivity.class);
+                intent.putExtra("coins",String.valueOf(mCoins));
+                intent.putExtra("cash",String.valueOf(mCash));
+                intent.putExtra("gems",String.valueOf(mGems));
                 startActivity(intent);
                 finish();
             }
@@ -430,8 +443,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 if(status.equals("deduct")){
                     // deduct logic
+
                     Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
                     HashMap<String, Object> results = new HashMap<>();
                     Log.d("my-gems", "onClick: " + mGems);

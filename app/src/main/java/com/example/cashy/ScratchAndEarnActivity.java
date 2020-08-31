@@ -1,6 +1,7 @@
 package com.example.cashy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.anupkumarpanwar.scratchview.ScratchView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,14 +33,13 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
     Button button;
     TextView reward;
     ImageView rewardIcon;
-//    TextView coinVal;
+    //    TextView coinVal;
     String[] items = new String[]{"coin","cash","gem","quiz","scratch"
-                ,"spin","ads"};
-   int [] coinsNo = new int[]{150,200,350,500,50,100,250,30,650};
-   int [] gemsNo = new int[]{2,3,1,8,6,10,4,12,5};
-   float [] cashNo = new float[]{1, (float) 0.8, (float) 1.5, (float) 0.3,3,2, (float) 1.7, (float) 2.4,5};
-   DatabaseReference databaseReference;
-   FirebaseUser user;
+            ,"spin","ads"};
+
+    String item;
+    DatabaseReference databaseReference;
+    FirebaseUser user;
 
     int mCoins,mGems;
     float mCash;
@@ -73,7 +72,7 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
 
         //pick items randomly
         final Random rand = new Random();
-        final String item = items[rand.nextInt(items.length)];
+        item = items[rand.nextInt(items.length)];
 
         // generate coin amount,gem amount and cash amount randomly
 
@@ -86,7 +85,7 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
 
         if(item.equals("coin")){
             // update coin in db
-            String amount = String.valueOf(coinsNo[rand.nextInt(coinsNo.length)]);
+            String amount = String.valueOf(Math.round((Math.random()*(500-100)+100)/10)*10);
             reward.setText(amount);
             Log.d("scratch-coin", "onCreate: ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -97,7 +96,8 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             performAllUpdate(amount,"coin");
         }else if(item.equals("cash")){
             //update cash in db
-            String amount = String.valueOf(cashNo[rand.nextInt(cashNo.length)]);
+            String amount = String.format("%.02f",((Math.random()*(1-0.25)+0.25)/10)*10);
+            reward.setTextColor(Color.parseColor("#32CD32"));
             reward.setText("$ "+amount);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.cash, getApplicationContext().getTheme()));
@@ -107,7 +107,8 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             performAllUpdate(amount,"cash");
         }else if(item.equals("gem")){
             //udpate gem in db
-            String amount = String.valueOf(gemsNo[rand.nextInt(gemsNo.length)]);
+            String amount = String.valueOf(Math.round((Math.random()*(12-5)+5)/10)*10);
+            reward.setTextColor(Color.parseColor("#1f872e"));
             reward.setText(amount);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.gem, getApplicationContext().getTheme()));
@@ -121,8 +122,9 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             } else {
                 rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.quiz1));
             }
-
-
+            reward.setTextColor(Color.parseColor("#0000ff"));
+            reward.setText("Quiz");
+        // send to quiz activity
 
         }else if(item.equals("scratch")){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -130,6 +132,9 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             } else {
                 rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.scratch));
             }
+
+            reward.setTextColor(Color.parseColor("#9B8706"));
+            reward.setText("Scratch");
 
 
         }else if(item.equals("spin")){
@@ -139,23 +144,28 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
                 rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.roulette));
             }
 
+            reward.setTextColor(Color.parseColor("#dd3333"));
+            reward.setText("Spin");
+
+
         }else{
             // to watch ads activity
         }
 
 
 
+        // change this later on
         scratchView.setRevealListener(new ScratchView.IRevealListener() {
             @Override
             public void onRevealed(ScratchView scratchView) {
                 scratchView.setVisibility(View.GONE);
-                Toast.makeText(ScratchAndEarnActivity.this, "Revealed", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ScratchAndEarnActivity.this, "Revealed", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onRevealPercentChangedListener(ScratchView scratchView, float percent) {
-                if (percent>=0.5) {
+                if (percent>=0.9) {
 //                    Toast.makeText(ScratchAndEarnActivity.this, "Revealed", Toast.LENGTH_SHORT).show();
                     Log.d("Reveal Percentage", "onRevealPercentChangedListener: " + String.valueOf(percent));
                 }
@@ -226,8 +236,38 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
     }
 
     public void exit(View view) {
-        Intent intent = new Intent(ScratchAndEarnActivity.this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        Log.d("clicked", "exit: none");
+        if(item.equals("quiz")){
+            Log.d("clicked", "exit: quiz");
+            Intent intent = new Intent(ScratchAndEarnActivity.this,QuizActivity.class);
+            intent.putExtra("coins",String.valueOf(mCoins));
+            intent.putExtra("cash",String.valueOf(mCash));
+            intent.putExtra("gems",String.valueOf(mGems));
+            startActivity(intent);
+            finish();
+        }else if(item.equals("spin")){
+            Log.d("clicked", "exit: spin");
+            Intent intent = new Intent(ScratchAndEarnActivity.this,SpinAndEarnActivity.class);
+            intent.putExtra("coins",String.valueOf(mCoins));
+            intent.putExtra("cash",String.valueOf(mCash));
+            intent.putExtra("gems",String.valueOf(mGems));
+            startActivity(intent);
+            finish();
+        }else if(item.equals("scratch")){
+            Log.d("clicked", "exit: scratch");
+            Intent intent = new Intent(ScratchAndEarnActivity.this,ScratchAndEarnActivity.class);
+            intent.putExtra("coins",String.valueOf(mCoins));
+            intent.putExtra("cash",String.valueOf(mCash));
+            intent.putExtra("gems",String.valueOf(mGems));
+            startActivity(intent);
+            finish();
+        }else if(item.equals("ads")){
+            Log.d("clicked", "exit: ads");
+        }else {
+            Log.d("clicked", "exit: others");
+            Intent intent = new Intent(ScratchAndEarnActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
