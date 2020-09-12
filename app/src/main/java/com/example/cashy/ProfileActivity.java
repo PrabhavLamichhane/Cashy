@@ -20,6 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -44,14 +50,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import static com.google.firebase.storage.FirebaseStorage.getInstance;
-
 public class ProfileActivity extends AppCompatActivity {
 
     ImageButton backBtn,changeName,changeEmail;
     ImageView imageProfile;
     FloatingActionButton changePic;
     TextView userName,email;
+    AdView adView1;
 
     ProgressDialog pd;
 
@@ -79,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        backBtn = findViewById(R.id.btn_back);
+//        backBtn = findViewById(R.id.btn_back);
         imageProfile = findViewById(R.id.image_profile);
         changePic = findViewById(R.id.fab_camera);
         userName = findViewById(R.id.tv_username);
@@ -94,10 +99,20 @@ public class ProfileActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
-        storageReference = getInstance().getReference();//firebase storage reference
+        storageReference = FirebaseStorage.getInstance().getReference();//firebase storage reference
 
         cameraPermission = new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        adView1 = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest);
 
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
 
@@ -132,12 +147,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        backBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         changePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -363,7 +378,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void uploadUserPhoto(final Uri uri) {
 
-//        pd.setMessage("Publishing post...");
+        pd.setMessage("Updating profile...");
         pd.show();
         String filePathAndName = "Profile/"+"profile_"+user.getUid();
         StorageReference storageReference1 = storageReference.child(filePathAndName);
@@ -408,7 +423,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
-                Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "No..."+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -418,6 +433,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 

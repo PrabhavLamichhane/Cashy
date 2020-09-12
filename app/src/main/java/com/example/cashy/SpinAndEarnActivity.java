@@ -8,10 +8,25 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +41,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import rubikstudio.library.LuckyWheelView;
 import rubikstudio.library.model.LuckyItem;
@@ -43,6 +59,13 @@ public class SpinAndEarnActivity extends AppCompatActivity {
     float mCash;
 
     Dialog myDialog;
+
+    AdView adView1;
+
+    RewardedAd rewardedAd;
+
+
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +94,23 @@ public class SpinAndEarnActivity extends AppCompatActivity {
         luckyWheelView = findViewById(R.id.luckywheel);
         items = new ArrayList<>();
 
+        MobileAds.initialize(SpinAndEarnActivity.this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+
+        adView1 = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest);
+
+        loadAd();
         // Adding items to spin wheel
         // user function to remove repeated code
         final LuckyItem item1 = new LuckyItem();
@@ -175,7 +215,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
 
                 if(index == 3){
                     // directly to watch activity
-                    showPositivePopup(item8.topText,"watch");
+                    showPositivePopup(item4.topText,"watch");
                 }
 
                 if(index == 4){
@@ -257,7 +297,19 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        showPositivePopup(topText,item);
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        }else {
+                            showPositivePopup(topText, item);
+                        }
+
+                        mInterstitialAd.setAdListener(new AdListener(){
+                            @Override
+                            public void onAdClosed() {
+                                // Code to be executed when the interstitial ad is closed.
+                                showPositivePopup(topText, item);
+                            }
+                        });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -273,6 +325,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(SpinAndEarnActivity.this,MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
@@ -302,6 +355,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent quizIntent = new Intent(SpinAndEarnActivity.this,MainActivity.class);
                     startActivity(quizIntent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();
                 }
             });
@@ -318,6 +372,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent quizIntent = new Intent(SpinAndEarnActivity.this,MainActivity.class);
                     startActivity(quizIntent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();
                 }
             });
@@ -333,6 +388,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent quizIntent = new Intent(SpinAndEarnActivity.this,MainActivity.class);
                     startActivity(quizIntent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();
                 }
             });
@@ -352,6 +408,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                     quizIntent.putExtra("cash",String.valueOf(mCash));
                     quizIntent.putExtra("gems",String.valueOf(mGems));
                     startActivity(quizIntent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();
                 }
             });
@@ -370,13 +427,19 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                     intent.putExtra("cash",String.valueOf(mCash));
                     intent.putExtra("gems",String.valueOf(mGems));
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();
                 }
             });
         }else if(item.equals("watch")){
             // Send to watch ads
             reward.setTextColor(Color.parseColor("#FF0000"));
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.vids, getApplicationContext().getTheme()));
+            } else {
+                rewardIcon.setImageDrawable(getResources().getDrawable(R.drawable.vids));
+            }
+            showAd();
         }else if (item.equals("spin")){
             reward.setTextColor(Color.parseColor("#dd3333"));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -393,6 +456,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                     intent.putExtra("cash",String.valueOf(mCash));
                     intent.putExtra("gems",String.valueOf(mGems));
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     finish();
                 }
             });
@@ -400,13 +464,122 @@ public class SpinAndEarnActivity extends AppCompatActivity {
         }
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
-        myDialog.show();
+        try {
+            myDialog.show();
+        }
+        catch (WindowManager.BadTokenException e) {
+            //use a log message
+            Log.d("TAG", "showPositivePopup: "+e);
+        }
     }
 
-    public void showNegativePopup(){
-        myDialog.setContentView(R.layout.result_popup_negative);
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.setCanceledOnTouchOutside(false);
-        myDialog.show();
+
+    public void showAd(){
+        if(this.rewardedAd.isLoaded()){
+            RewardedAdCallback adCallback = new RewardedAdCallback() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    // Here add 3 gem
+                    Log.d("reward", "onUserEarnedReward: Won gem");
+                    Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
+                    HashMap<String, Object> results = new HashMap<>();
+
+                    Log.d("my-gems", "onClick: " + mGems);
+
+                    results.put("gems", mGems + 3);
+//                    results.put("cash", mCash - 0.001 * coinAmount);
+
+                    // use reference to update
+                    databaseReference.child(user.getUid()).updateChildren(results).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(SpinAndEarnActivity.this,MainActivity.class));
+                                finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onRewardedAdOpened() {
+                    super.onRewardedAdOpened();
+                }
+
+                @Override
+                public void onRewardedAdClosed() {
+                    super.onRewardedAdClosed();
+                    loadAd();
+                }
+
+                @Override
+                public void onRewardedAdFailedToShow(int i) {
+                    super.onRewardedAdFailedToShow(i);
+                }
+
+                @Override
+                public void onRewardedAdFailedToShow(AdError adError) {
+                    super.onRewardedAdFailedToShow(adError);
+                    Toast.makeText(SpinAndEarnActivity.this, "Please try again...", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public int hashCode() {
+                    return super.hashCode();
+                }
+
+                @Override
+                public boolean equals(@Nullable Object obj) {
+                    return super.equals(obj);
+                }
+
+                @Override
+                protected Object clone() throws CloneNotSupportedException {
+                    return super.clone();
+                }
+
+                @NonNull
+                @Override
+                public String toString() {
+                    return super.toString();
+                }
+
+                @Override
+                protected void finalize() throws Throwable {
+                    super.finalize();
+                }
+            };
+
+            this.rewardedAd.show(this,adCallback);
+        }else{
+
+        }
+    }
+
+    private void loadAd(){
+        this.rewardedAd = new RewardedAd(this,getString(R.string.rewarded_ad_unit_id));
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback(){
+
+            @Override
+            public void onRewardedAdLoaded() {
+                super.onRewardedAdLoaded();
+                Log.d("ads", "onRewardedAdLoaded: Ads loaded successfully");
+
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(LoadAdError loadAdError) {
+                super.onRewardedAdFailedToLoad(loadAdError);
+                Log.d("ads", "onRewardedAdLoaded: Ads Failed");
+
+            }
+        };
+
+        this.rewardedAd.loadAd(new AdRequest.Builder().build(),adLoadCallback);
     }
 }

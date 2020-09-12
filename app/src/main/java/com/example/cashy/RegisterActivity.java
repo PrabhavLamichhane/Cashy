@@ -134,6 +134,8 @@ public class RegisterActivity extends AppCompatActivity {
                                         finish();
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                         startActivity(intent);
+                                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                        finish();
                                         Toast.makeText(RegisterActivity.this, "Registration Succeed...", Toast.LENGTH_SHORT).show();
                                     }else{
                                         Toast.makeText(RegisterActivity.this, "User could not be registered...", Toast.LENGTH_SHORT).show();
@@ -161,6 +163,8 @@ public class RegisterActivity extends AppCompatActivity {
     public void goToLogin(View v){
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
     }
 
     public void showPopup(String msg){

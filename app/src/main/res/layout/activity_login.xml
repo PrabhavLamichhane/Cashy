@@ -64,8 +64,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/round_corner"
-            android:backgroundTint="#d11d53"
+            android:background="@drawable/button_background"
             android:text="Log In"
             android:layout_gravity="center"
             android:stateListAnimator="@null"
@@ -102,10 +101,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#d11d53 "
+                android:textColor="#FFDD00"
                 android:text=" Register"
+                android:textStyle="bold"
                 android:onClick="goToRegister"
-                android:textSize="17dp"/>
+                android:textSize="20sp"/>
         </LinearLayout>
 
     </LinearLayout>

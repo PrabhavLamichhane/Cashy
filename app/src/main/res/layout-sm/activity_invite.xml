@@ -9,26 +9,25 @@
 
 
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_arrow_back_black_24dp"
-                android:layout_alignParentLeft="true"
-                android:tint="#fff"/>
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        android:layout_alignParentLeft="true"
+        android:tint="#fff"/>
 
 
 
     <ImageView
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/gift"
         android:layout_below="@+id/back"
         android:id="@+id/image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"/>
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -37,10 +36,10 @@
         android:layout_below="@id/image"
         android:minWidth="150dp"
         android:gravity="center_horizontal"
-        android:textSize="33sp"
-        android:padding="12dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:textSize="23sp"
+        android:padding="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:textStyle="bold"
         android:textColor="@color/colorWhite"
         android:id="@+id/referCode"/>
@@ -53,14 +52,14 @@
         android:background="@drawable/refer_bg"
         android:minWidth="160dp"
         android:gravity="center_horizontal"
-        android:textSize="22sp"
-        android:padding="12dp"
+        android:textSize="17sp"
+        android:padding="10dp"
         android:layout_below="@+id/referCode"
         android:id="@+id/referCodeTv"/>
 
     <Button
         android:id="@+id/redeemCode"
-        android:layout_width="250dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_corner"
         android:backgroundTint="#FFEB3B"
@@ -71,14 +70,14 @@
         android:layout_marginTop="32dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:textSize="20sp"
-        android:padding="15dp"
+        android:textSize="17sp"
+        android:padding="8dp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp" />
 
     <Button
         android:id="@+id/invite"
-        android:layout_width="250dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_corner"
         android:backgroundTint="@color/button"
@@ -86,14 +85,14 @@
         android:layout_marginBottom="55dp"
         android:stateListAnimator="@null"
         android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="18dp"
         android:textColor="@color/colorWhite"
         android:layout_below="@id/redeemCode"
         android:layout_gravity="center"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:textSize="20sp"
-        android:padding="15dp"
+        android:textSize="17sp"
+        android:padding="8dp"
         android:textStyle="bold"
         android:layout_marginLeft="30dp" />
 

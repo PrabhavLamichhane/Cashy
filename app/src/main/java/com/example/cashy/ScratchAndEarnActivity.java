@@ -9,8 +9,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anupkumarpanwar.scratchview.ScratchView;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +36,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,6 +56,10 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
 
     int mCoins,mGems;
     float mCash;
+
+    RewardedAd rewardedAd;
+
+    AdView adView1;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -73,6 +90,19 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
         //pick items randomly
         final Random rand = new Random();
         item = items[rand.nextInt(items.length)];
+
+        MobileAds.initialize(ScratchAndEarnActivity.this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        adView1 = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest);
+
+        loadAd();
 
         // generate coin amount,gem amount and cash amount randomly
 
@@ -150,6 +180,7 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
 
         }else{
             // to watch ads activity
+            showAd();
         }
 
 
@@ -232,11 +263,12 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(ScratchAndEarnActivity.this,MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
     public void exit(View view) {
-        Log.d("clicked", "exit: none");
+//        Log.d("clicked", "exit: none");
         if(item.equals("quiz")){
             Log.d("clicked", "exit: quiz");
             Intent intent = new Intent(ScratchAndEarnActivity.this,QuizActivity.class);
@@ -244,6 +276,7 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             intent.putExtra("cash",String.valueOf(mCash));
             intent.putExtra("gems",String.valueOf(mGems));
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             finish();
         }else if(item.equals("spin")){
             Log.d("clicked", "exit: spin");
@@ -252,6 +285,7 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             intent.putExtra("cash",String.valueOf(mCash));
             intent.putExtra("gems",String.valueOf(mGems));
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             finish();
         }else if(item.equals("scratch")){
             Log.d("clicked", "exit: scratch");
@@ -263,11 +297,124 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             finish();
         }else if(item.equals("ads")){
             Log.d("clicked", "exit: ads");
+            showAd();
         }else {
             Log.d("clicked", "exit: others");
             Intent intent = new Intent(ScratchAndEarnActivity.this, MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             finish();
         }
+    }
+
+
+    public void showAd(){
+        if(this.rewardedAd.isLoaded()){
+            RewardedAdCallback adCallback = new RewardedAdCallback() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    // Here add 3 gem
+                    Log.d("reward", "onUserEarnedReward: Won gem");
+                    Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
+                    HashMap<String, Object> results = new HashMap<>();
+
+                    Log.d("my-gems", "onClick: " + mGems);
+
+                    results.put("gems", mGems + 3);
+//                    results.put("cash", mCash - 0.001 * coinAmount);
+
+                    // use reference to update
+                    databaseReference.child(user.getUid()).updateChildren(results).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            startActivity(new Intent(ScratchAndEarnActivity.this,MainActivity.class));
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+                }
+
+                @Override
+                public void onRewardedAdOpened() {
+                    super.onRewardedAdOpened();
+                }
+
+                @Override
+                public void onRewardedAdClosed() {
+                    super.onRewardedAdClosed();
+                    loadAd();
+                }
+
+                @Override
+                public void onRewardedAdFailedToShow(int i) {
+                    super.onRewardedAdFailedToShow(i);
+                }
+
+                @Override
+                public void onRewardedAdFailedToShow(AdError adError) {
+                    super.onRewardedAdFailedToShow(adError);
+                    Toast.makeText(ScratchAndEarnActivity.this, "Please try again...", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public int hashCode() {
+                    return super.hashCode();
+                }
+
+                @Override
+                public boolean equals(@Nullable Object obj) {
+                    return super.equals(obj);
+                }
+
+                @Override
+                protected Object clone() throws CloneNotSupportedException {
+                    return super.clone();
+                }
+
+                @NonNull
+                @Override
+                public String toString() {
+                    return super.toString();
+                }
+
+                @Override
+                protected void finalize() throws Throwable {
+                    super.finalize();
+                }
+            };
+
+            this.rewardedAd.show(this,adCallback);
+        }else{
+
+        }
+    }
+
+
+    private void loadAd(){
+        this.rewardedAd = new RewardedAd(this,getString(R.string.rewarded_ad_unit_id));
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback(){
+
+            @Override
+            public void onRewardedAdLoaded() {
+                super.onRewardedAdLoaded();
+                Log.d("ads", "onRewardedAdLoaded: Ads loaded successfully");
+
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(LoadAdError loadAdError) {
+                super.onRewardedAdFailedToLoad(loadAdError);
+                Log.d("ads", "onRewardedAdLoaded: Ads Failed");
+
+            }
+        };
+
+        this.rewardedAd.loadAd(new AdRequest.Builder().build(),adLoadCallback);
     }
 }

@@ -2,6 +2,9 @@ package com.example.cashy;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +12,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,7 +25,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -39,13 +47,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference databaseReference;
     RewardedAd rewardedAd;
+
+    private InterstitialAd mInterstitialAd;
 
     int mCoins,mGems;
     float mCash;
@@ -104,14 +119,59 @@ public class MainActivity extends AppCompatActivity {
 
         /* Enable disk persistence  */
         checkConnection();
+        checkUserStatus();
+
+
+        MobileAds.initialize(MainActivity.this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        loadAd();
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
 
         progressDialog.setMessage("Loading user info...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        checkUserStatus();
+
+
 
         if(user != null){
+
+            if(getIntent().getExtras()!=null){
+                for (String key:getIntent().getExtras().keySet()){
+                    if(key.equals("Quiz")){
+                        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                        intent.putExtra("coins",String.valueOf(mCoins));
+                        intent.putExtra("cash",String.valueOf(mCash));
+                        intent.putExtra("gems",String.valueOf(mGems));
+                        startActivity(intent);
+                        finish();
+                    }else if(key.equals("Spin")){
+                        Intent intent = new Intent(MainActivity.this, SpinAndEarnActivity.class);
+                        intent.putExtra("coins",String.valueOf(mCoins));
+                        intent.putExtra("cash",String.valueOf(mCash));
+                        intent.putExtra("gems",String.valueOf(mGems));
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Intent intent = new Intent(MainActivity.this, ScratchAndEarnActivity.class);
+                        intent.putExtra("coins",String.valueOf(mCoins));
+                        intent.putExtra("cash",String.valueOf(mCash));
+                        intent.putExtra("gems",String.valueOf(mGems));
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
+
             Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
             query.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -187,25 +247,32 @@ public class MainActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
-                startActivity(intent);
-                finish();
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }else {
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                mInterstitialAd.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdClosed() {
+                        // Code to be executed when the interstitial ad is closed.
+                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
             }
         });
 
-        MobileAds.initialize(MainActivity.this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
 
-            }
-        });
-
-        loadAd();
 
         watchAds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Loading ads...", Toast.LENGTH_SHORT).show();
+                Log.d("", "onClick: Loading ads...");
                 showAd();
             }
         });
@@ -230,21 +297,56 @@ public class MainActivity extends AppCompatActivity {
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Invite.class);
-                startActivity(intent);
-                finish();
+
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }else {
+                    Intent intent = new Intent(MainActivity.this, Invite.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                mInterstitialAd.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdClosed() {
+                        // Code to be executed when the interstitial ad is closed.
+                        Intent intent = new Intent(MainActivity.this, Invite.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
             }
         });
 
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,PaymentActivity.class);
-                intent.putExtra("coins",String.valueOf(mCoins));
-                intent.putExtra("cash",String.valueOf(mCash));
-                intent.putExtra("gems",String.valueOf(mGems));
-                startActivity(intent);
-                finish();
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }else {
+
+                    Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
+                    intent.putExtra("coins", String.valueOf(mCoins));
+                    intent.putExtra("cash", String.valueOf(mCash));
+                    intent.putExtra("gems", String.valueOf(mGems));
+                    startActivity(intent);
+                    finish();
+                }
+
+                mInterstitialAd.setAdListener(new AdListener(){
+                    @Override
+                    public void onAdClosed() {
+                        // Code to be executed when the interstitial ad is closed.
+                        Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
+                        intent.putExtra("coins", String.valueOf(mCoins));
+                        intent.putExtra("cash", String.valueOf(mCash));
+                        intent.putExtra("gems", String.valueOf(mGems));
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+
             }
         });
 
@@ -276,8 +378,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(activeNetwork == null || !activeNetwork.isConnected() || !activeNetwork.isAvailable()){
             totalLayout.setVisibility(View.GONE);
+            progressDialog.dismiss();
             showNetworkPopup("No Internet Connection...");
         }else {
+            progressDialog.show();
             totalLayout.setVisibility(View.VISIBLE);
             myDialog1.dismiss();
         }
@@ -290,6 +394,8 @@ public class MainActivity extends AppCompatActivity {
         checkUserStatus();
     }
 
+
+
     public void checkUserStatus(){
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user !=null){
@@ -297,6 +403,7 @@ public class MainActivity extends AppCompatActivity {
             myUid = user.getUid();// currently signed in user
         }else{
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
         }
     }
 
@@ -323,7 +430,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRewardedAdFailedToLoad(LoadAdError loadAdError) {
                 super.onRewardedAdFailedToLoad(loadAdError);
-                Toast.makeText(MainActivity.this, "Please try again...", Toast.LENGTH_SHORT).show();
                 Log.d("ads", "onRewardedAdLoaded: Ads Failed");
 
             }
@@ -462,12 +568,35 @@ public class MainActivity extends AppCompatActivity {
                         databaseReference.child(user.getUid()).updateChildren(results).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Intent intent = new Intent(MainActivity.this, ActivityToOpen);
-                                intent.putExtra("coins",String.valueOf(mCoins));
-                                intent.putExtra("cash",String.valueOf(mCash));
-                                intent.putExtra("gems",String.valueOf(mGems));
-                                startActivity(intent);
-                                finish();
+
+                                // Put interstital ads
+
+                                if (mInterstitialAd.isLoaded()) {
+                                    mInterstitialAd.show();
+                                } else {
+                                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                                    Intent intent = new Intent(MainActivity.this, ActivityToOpen);
+                                    intent.putExtra("coins",String.valueOf(mCoins));
+                                    intent.putExtra("cash",String.valueOf(mCash));
+                                    intent.putExtra("gems",String.valueOf(mGems));
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                mInterstitialAd.setAdListener(new AdListener(){
+                                    @Override
+                                    public void onAdClosed() {
+                                        // Code to be executed when the interstitial ad is closed.
+                                        Intent intent = new Intent(MainActivity.this, ActivityToOpen);
+                                        intent.putExtra("coins",String.valueOf(mCoins));
+                                        intent.putExtra("cash",String.valueOf(mCash));
+                                        intent.putExtra("gems",String.valueOf(mGems));
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -503,10 +632,16 @@ public class MainActivity extends AppCompatActivity {
                                 HashMap<String, Object> results = new HashMap<>();
                                 Log.d("my-gems", "onClick: " + mGems);
 
-                                if(mCoins>=500 && mCash>0) {
+                                Log.d("", "onClick: "+mCoins);
+                                if(mCoins>=800) {
 
                                     mCoins = mCoins - 800;
-                                    mCash = (float) (mCash - 0.002*800);
+
+                                    if (mCash > 0.002 * 800) {
+                                        mCash = (float) (mCash - 0.002*800);
+                                    }else{
+                                        mCash = 0;
+                                    }
                                     results.put("coins", mCoins);
                                     results.put("cash", mCash );
 
@@ -548,7 +683,13 @@ public class MainActivity extends AppCompatActivity {
 
                         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         myDialog.setCanceledOnTouchOutside(false);
-                        myDialog.show();
+                        try {
+                            myDialog.show();
+                        }
+                        catch (WindowManager.BadTokenException e) {
+                            //use a log message
+                            Log.d("TAG", "showPositivePopup: "+e);
+                        }
 
                         //end
                     }
@@ -582,7 +723,13 @@ public class MainActivity extends AppCompatActivity {
 
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
-        myDialog.show();
+        try {
+            myDialog.show();
+        }
+        catch (WindowManager.BadTokenException e) {
+            //use a log message
+            Log.d("TAG", "showPositivePopup: "+e);
+        }
 
     }
 
@@ -590,12 +737,20 @@ public class MainActivity extends AppCompatActivity {
     public void showNetworkPopup(String msg){
             myDialog1.setContentView(R.layout.result_popup_error);
             ImageView cancel = myDialog1.findViewById(R.id.cancel);
+            Log.d("shown", "showNetworkPopup: ");
             cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     myDialog1.dismiss();
-                    recreate();
-                    checkConnection();
+                    myDialog1.hide();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            recreate();
+                            checkConnection();
+                        }
+                    },2000);
                 }
             });
 
@@ -607,14 +762,29 @@ public class MainActivity extends AppCompatActivity {
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    recreate();
-                    checkConnection();
+                    myDialog1.dismiss();
+                    myDialog1.hide();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            recreate();
+                            checkConnection();
+                        }
+                    },2000);
+
                 }
             });
 
             myDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             myDialog1.setCanceledOnTouchOutside(false);
+
             myDialog1.show();
+
+//        catch (WindowManager.BadTokenException e) {
+//            //use a log message
+//            Log.d("TAG", "showPositivePopup: "+e);
+//        }
 
 
     }
@@ -624,5 +794,131 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         checkConnection();
         checkUserStatus();
+    }
+
+    static class MyFirebaseInstanceService extends FirebaseMessagingService {
+    //
+    //    public static int NOTIFICATION_ID =1;
+    //    @Override
+    //    public void onMessageReceived(RemoteMessage remoteMessage) {
+    //        generateNotification(remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle());
+    //    }
+    //
+    //    private void generateNotification(String body, String title) {
+    //
+    //        Intent intent = new Intent(this,MainActivity.class);
+    //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    //
+    //        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,
+    //                intent,PendingIntent.FLAG_ONE_SHOT);
+    //
+    //        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    //
+    //        NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(this)
+    //                .setSmallIcon(R.mipmap.ic_launcher)//change app icon later on
+    //                .setContentTitle(title)
+    //                .setContentText(body)
+    //                .setAutoCancel(true)
+    //                .setSound(soundUri)
+    //                .setContentIntent(pendingIntent);
+    //
+    //        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+    //
+    //        if(NOTIFICATION_ID>1073741824){
+    //            NOTIFICATION_ID = 0;
+    //        }
+    //
+    //        notificationManager.notify(NOTIFICATION_ID++,notificationCompat.build());
+    //
+    //
+    //
+    //    }
+
+        @Override
+        public void onMessageReceived(RemoteMessage remoteMessage) {
+            super.onMessageReceived(remoteMessage);
+            if (remoteMessage.getData().isEmpty()) {
+
+                showNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            }
+
+            else
+            {
+                showNotification(remoteMessage.getData());
+
+            }
+
+        }
+
+        private void showNotification(Map<String, String> data) {
+            String title = data.get("title").toString();
+            String body = data.get("body").toString();
+
+
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            String NOTIFICATION_CHANNEL_ID = "example.cashy.test";
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            {
+                NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,"Notification",
+                        NotificationManager.IMPORTANCE_DEFAULT);
+
+                notificationChannel.setDescription("Earn free games.");
+                notificationChannel.enableLights(true);
+                notificationChannel.setLightColor(Color.BLUE);
+                notificationChannel.enableLights(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,NOTIFICATION_CHANNEL_ID);
+
+            notificationBuilder.setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.mipmap.ic_launcher) //change this to app icon
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setContentInfo("Info");
+
+            notificationManager.notify(new Random().nextInt(),notificationBuilder.build());
+
+
+        }
+
+        private void showNotification(String title, String body) {
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            String NOTIFICATION_CHANNEL_ID = "example.myapplication.service.test";
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            {
+                NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,"Notification",
+                        NotificationManager.IMPORTANCE_DEFAULT);
+
+                notificationChannel.setDescription("Team Tarang");
+                notificationChannel.enableLights(true);
+                notificationChannel.setLightColor(Color.BLUE);
+                notificationChannel.enableLights(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,NOTIFICATION_CHANNEL_ID);
+
+            notificationBuilder.setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.mipmap.ic_launcher) //change this to app icon
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setContentInfo("Info");
+
+            notificationManager.notify(new Random().nextInt(),notificationBuilder.build());
+        }
+
+        @Override
+        public void onNewToken(String s) {
+            super.onNewToken(s);
+
+            Log.d("TOKENFIREBASE",s);
+        }
     }
 }

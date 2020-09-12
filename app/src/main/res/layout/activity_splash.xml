@@ -8,6 +8,9 @@
     tools:context=".SplashActivity"
     android:background="@color/colorPrimary">
 
+
+
+
     <TextView
         android:id="@+id/cashy"
         android:layout_width="match_parent"
@@ -34,6 +37,7 @@
         android:textStyle="bold"
         android:textColor="@color/colorWhite"
         android:textSize="22sp" />
+
 
 
 </RelativeLayout>

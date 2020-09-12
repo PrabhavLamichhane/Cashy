@@ -102,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }else{
                         progressDialog.dismiss();
                         showPopup("Something went wrong. Try Again...");
@@ -123,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     public void goToRegister(View v){
         Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

@@ -8,39 +8,39 @@
     tools:context=".SpinAndEarnActivity">
 
 
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="15dp"-->
-<!--        >-->
-<!--        <LinearLayout-->
-<!--            android:padding="10dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:orientation="horizontal">-->
-<!--            <ImageButton-->
-<!--                android:id="@+id/btn_back"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:src="@drawable/back_button"-->
-<!--                android:padding="4dp"-->
-<!--                android:layout_marginLeft="8dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:tint="@color/colorTints"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/nameTv"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/colorTints"-->
-<!--                android:textSize="28sp"-->
-<!--                android:textAlignment="center"-->
-<!--                android:text="SPIN WHEEL"-->
-<!--                android:layout_marginRight="26sp"-->
-<!--                android:gravity="center_horizontal" />-->
-<!--        </LinearLayout>-->
-<!--    </androidx.appcompat.widget.Toolbar>-->
+    <!--    <androidx.appcompat.widget.Toolbar-->
+    <!--        android:id="@+id/toolbar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:padding="15dp"-->
+    <!--        >-->
+    <!--        <LinearLayout-->
+    <!--            android:padding="10dp"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:gravity="center_vertical"-->
+    <!--            android:orientation="horizontal">-->
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/btn_back"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:src="@drawable/back_button"-->
+    <!--                android:padding="4dp"-->
+    <!--                android:layout_marginLeft="8dp"-->
+    <!--                android:background="@android:color/transparent"-->
+    <!--                android:tint="@color/colorTints"/>-->
+    <!--            <TextView-->
+    <!--                android:id="@+id/nameTv"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:textColor="@color/colorTints"-->
+    <!--                android:textSize="28sp"-->
+    <!--                android:textAlignment="center"-->
+    <!--                android:text="SPIN WHEEL"-->
+    <!--                android:layout_marginRight="26sp"-->
+    <!--                android:gravity="center_horizontal" />-->
+    <!--        </LinearLayout>-->
+    <!--    </androidx.appcompat.widget.Toolbar>-->
 
     <LinearLayout
         android:layout_marginTop="5dp"
@@ -57,18 +57,18 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp">
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/totalCoins"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            android:text="100"
-            android:textSize="22sp"/>
-        <ImageView
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:src="@drawable/coin"
-            />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalCoins"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:text="100"
+                android:textSize="22sp"/>
+            <ImageView
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:src="@drawable/coin"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -118,8 +118,8 @@
 
     <rubikstudio.library.LuckyWheelView
         android:id="@+id/luckywheel"
-        android:layout_width="380dp"
-        android:layout_height="380dp"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
         app:lkwCenterImage="@drawable/star"
         android:layout_centerHorizontal="true"
         app:lkwBackgroundColor="#FF9800"
@@ -128,7 +128,8 @@
         app:lkwCursor="@drawable/ic_cursor"
         app:lkwTopTextColor="@color/colorWhite"
         app:lkwTopTextSize="18sp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center_horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
@@ -137,42 +138,43 @@
 
 
 
-<!--    <Button-->
-<!--        android:id="@id/spin"-->
-<!--        android:layout_below="@id/luckywheel"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="35dp"-->
-<!--        android:background="@drawable/round_corner"-->
-<!--        android:backgroundTint="#32CD32"-->
-<!--        android:text="Spin Now"-->
-<!--        android:stateListAnimator="@null"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginStart="30dp"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:layout_marginEnd="30dp"-->
-<!--        android:textColor="@color/colorWhite"-->
-<!--        android:padding="16dp"-->
-<!--        android:textSize="32sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:onClick="playGame"-->
-<!--        android:layout_marginLeft="30dp" />-->
+    <!--    <Button-->
+    <!--        android:id="@id/spin"-->
+    <!--        android:layout_below="@id/luckywheel"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="35dp"-->
+    <!--        android:background="@drawable/round_corner"-->
+    <!--        android:backgroundTint="#32CD32"-->
+    <!--        android:text="Spin Now"-->
+    <!--        android:stateListAnimator="@null"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginStart="30dp"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:layout_marginEnd="30dp"-->
+    <!--        android:textColor="@color/colorWhite"-->
+    <!--        android:padding="16dp"-->
+    <!--        android:textSize="32sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:onClick="playGame"-->
+    <!--        android:layout_marginLeft="30dp" />-->
 
     <Button
         android:id="@+id/spin"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/button_background"
-        android:text="Spin"
-        android:layout_marginTop="30dp"
+        android:text="SPIN"
+        android:layout_gravity="center"
         android:stateListAnimator="@null"
+        android:onClick="playGame"
         android:layout_below="@id/luckywheel"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorWhite"
-        android:textSize="24sp"
-        android:layout_marginBottom="30dp"
-        android:padding="15dp"
-        android:onClick="playGame"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
         android:textStyle="bold"/>
 
     <com.google.android.gms.ads.AdView

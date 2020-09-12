@@ -11,11 +11,19 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cashy.model.Question;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +57,10 @@ public class QuizActivity extends AppCompatActivity {
     int mCoins,mGems;
     float mCash;
 
+    AdView adView1;
+
+    private InterstitialAd mInterstitialAd;
+
     Collection<Integer> alreadyChosen;
     Dialog myDialog;
     @Override
@@ -80,6 +92,20 @@ public class QuizActivity extends AppCompatActivity {
             mGems = Integer.parseInt(gems);
 
         }
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        adView1 = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView1.loadAd(adRequest);
+
         reference = FirebaseDatabase.getInstance().getReference().child("Questions");
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -620,6 +646,7 @@ public class QuizActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(QuizActivity.this,MainActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
 
@@ -634,13 +661,29 @@ public class QuizActivity extends AppCompatActivity {
         results.put("coins", mCoins );
         results.put("cash", mCash);
 
+
+        if(correct>0){
+
         databaseReference.child(user.getUid()).updateChildren(results)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 //                        sendToResultActivity("correct");
                         // show result_popup_positive
-                        showPositivePopup(correct*100);
+
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        }else {
+                            showPositivePopup(correct * 100);
+                        }
+
+                        mInterstitialAd.setAdListener(new AdListener(){
+                            @Override
+                            public void onAdClosed() {
+                                // Code to be executed when the interstitial ad is closed.
+                                showPositivePopup(correct * 100);
+                            }
+                        });
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -649,6 +692,24 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
+
+        }else{
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            }else {
+                showNegativePopup();
+            }
+
+            mInterstitialAd.setAdListener(new AdListener(){
+                @Override
+                public void onAdClosed() {
+                    // Code to be executed when the interstitial ad is closed.
+                    showNegativePopup();
+                }
+            });
+        }
+
+
 
     }
 
@@ -665,12 +726,19 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(QuizActivity.this,MainActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
             }
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
-        myDialog.show();
+        try {
+            myDialog.show();
+        }
+        catch (WindowManager.BadTokenException e) {
+            //use a log message
+            Log.d("TAG", "showPositivePopup: "+e);
+        }
     }
 
     public void showNegativePopup(){
@@ -680,12 +748,19 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(QuizActivity.this,MainActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
             }
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
-        myDialog.show();
+        try {
+            myDialog.show();
+        }
+        catch (WindowManager.BadTokenException e) {
+            //use a log message
+            Log.d("TAG", "showPositivePopup: "+e);
+        }
     }
 
 }
