@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".SpinAndEarnActivity">
+    tools:context=".SpinAndEarnActivity"
+    tools:ignore="MissingDefaultResource">
 
 
     <!--    <androidx.appcompat.widget.Toolbar-->
@@ -43,6 +44,7 @@
     <!--    </androidx.appcompat.widget.Toolbar>-->
 
     <LinearLayout
+        android:id="@+id/every"
         android:layout_marginTop="5dp"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
@@ -84,6 +86,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"
                 android:text="100"
+                android:layout_marginRight="3dp"
                 android:textSize="22sp"/>
             <ImageView
                 android:layout_width="33dp"
@@ -116,66 +119,75 @@
     </LinearLayout>
 
 
-    <rubikstudio.library.LuckyWheelView
-        android:id="@+id/luckywheel"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        app:lkwCenterImage="@drawable/star"
-        android:layout_centerHorizontal="true"
-        app:lkwBackgroundColor="#FF9800"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:lkwCursor="@drawable/ic_cursor"
-        app:lkwTopTextColor="@color/colorWhite"
-        app:lkwTopTextSize="18sp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="15dp"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
-
-
-
-
-
-    <!--    <Button-->
-    <!--        android:id="@id/spin"-->
-    <!--        android:layout_below="@id/luckywheel"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginBottom="35dp"-->
-    <!--        android:background="@drawable/round_corner"-->
-    <!--        android:backgroundTint="#32CD32"-->
-    <!--        android:text="Spin Now"-->
-    <!--        android:stateListAnimator="@null"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:layout_marginStart="30dp"-->
-    <!--        android:layout_marginTop="50dp"-->
-    <!--        android:layout_marginEnd="30dp"-->
-    <!--        android:textColor="@color/colorWhite"-->
-    <!--        android:padding="16dp"-->
-    <!--        android:textSize="32sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:onClick="playGame"-->
-    <!--        android:layout_marginLeft="30dp" />-->
-
-    <Button
-        android:id="@+id/spin"
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:background="@drawable/button_background"
-        android:text="SPIN"
-        android:layout_gravity="center"
-        android:stateListAnimator="@null"
-        android:onClick="playGame"
-        android:layout_below="@id/luckywheel"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorWhite"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
-        android:textSize="17sp"
-        android:textStyle="bold"/>
+        android:gravity="center_horizontal">
+
+        <rubikstudio.library.LuckyWheelView
+            android:id="@+id/luckywheel"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:lkwCenterImage="@drawable/star"
+            app:lkwBackgroundColor="#FF9800"
+            app:lkwCursor="@drawable/ic_cursor"
+            app:lkwTopTextColor="@color/colorWhite"
+            app:lkwTopTextSize="18sp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <!--    <Button-->
+        <!--        android:id="@id/spin"-->
+        <!--        android:layout_below="@id/luckywheel"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginBottom="35dp"-->
+        <!--        android:background="@drawable/round_corner"-->
+        <!--        android:backgroundTint="#32CD32"-->
+        <!--        android:text="Spin Now"-->
+        <!--        android:stateListAnimator="@null"-->
+        <!--        android:layout_gravity="center"-->
+        <!--        android:layout_marginStart="30dp"-->
+        <!--        android:layout_marginTop="50dp"-->
+        <!--        android:layout_marginEnd="30dp"-->
+        <!--        android:textColor="@color/colorWhite"-->
+        <!--        android:padding="16dp"-->
+        <!--        android:textSize="32sp"-->
+        <!--        android:textStyle="bold"-->
+        <!--        android:onClick="playGame"-->
+        <!--        android:layout_marginLeft="30dp" />-->
+
+
+
+            <Button
+                android:id="@+id/spin"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp"
+                android:background="@drawable/button_background"
+                android:backgroundTint="@color/btn"
+                android:text="SPIN"
+                android:layout_gravity="center"
+                android:stateListAnimator="@null"
+                android:onClick="playGame"
+                android:layout_below="@id/luckywheel"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorWhite"
+                android:padding="15dp"
+                android:layout_marginTop="25dp"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+
+
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"

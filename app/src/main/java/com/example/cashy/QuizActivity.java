@@ -394,7 +394,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
-     //For single question
+    //For single question
 
 //    private void updateQuestion() {
 //

@@ -64,6 +64,7 @@ public class SpinAndEarnActivity extends AppCompatActivity {
 
     RewardedAd rewardedAd;
 
+    TextView totalCoins,totalCash,totalGems;
 
     private InterstitialAd mInterstitialAd;
 
@@ -88,6 +89,15 @@ public class SpinAndEarnActivity extends AppCompatActivity {
             mCash = Float.parseFloat(cash);
             mGems = Integer.parseInt(gems);
         }
+
+        totalCoins = findViewById(R.id.totalCoins);
+        totalCash = findViewById(R.id.totalCash);
+        totalGems = findViewById(R.id.totalgems);
+
+        float amount1 = Float.parseFloat(cash);
+        totalCoins.setText(coins);
+        totalCash.setText(String.format("%.02f",amount1));
+        totalGems.setText(gems);
 
         myDialog = new Dialog(this);
 
@@ -493,13 +503,16 @@ public class SpinAndEarnActivity extends AppCompatActivity {
                     databaseReference.child(user.getUid()).updateChildren(results).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                                startActivity(new Intent(SpinAndEarnActivity.this,MainActivity.class));
-                                finish();
+                            Intent intent = new Intent(SpinAndEarnActivity.this,MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
+                            Intent intent = new Intent(SpinAndEarnActivity.this,MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     });
 

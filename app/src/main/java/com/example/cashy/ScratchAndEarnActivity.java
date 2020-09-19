@@ -60,6 +60,7 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
     RewardedAd rewardedAd;
 
     AdView adView1;
+    TextView totalCoins,totalCash,totalGems;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -86,6 +87,16 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
             mGems = Integer.parseInt(gems);
             mCash = Float.parseFloat(cash);
         }
+
+        totalCoins = findViewById(R.id.totalCoins);
+        totalCash = findViewById(R.id.totalCash);
+        totalGems = findViewById(R.id.totalgems);
+
+        float amount1 = Float.parseFloat(cash);
+        totalCoins.setText(coins);
+        totalCash.setText(String.format("%.02f",amount1));
+        totalGems.setText(gems);
+
 
         //pick items randomly
         final Random rand = new Random();
@@ -327,13 +338,16 @@ public class ScratchAndEarnActivity extends AppCompatActivity {
                     databaseReference.child(user.getUid()).updateChildren(results).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            startActivity(new Intent(ScratchAndEarnActivity.this,MainActivity.class));
+                            Intent intent = new Intent(ScratchAndEarnActivity.this,MainActivity.class);
+                            startActivity(intent);
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
+                            Intent intent = new Intent(ScratchAndEarnActivity.this,MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     });
 

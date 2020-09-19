@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#32CD32</color>
+    <color name="colorPrimary">#FC4948</color>
+    <color name="btn">#32CD32</color>
     <color name="button">#e50914</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#03DAC5</color>
@@ -8,5 +9,5 @@
     <color name="colorTints">#FF1493</color>
     <color name="colorWhite">#FFFFFF</color>
 
-<!-- #d11d53  #FC4445 #dd3333 #f3c70d yellow-#FFEB3B #32CD32  #84FF4F-->
+<!-- #d11d53  #FC4445 #dd3333 #f3c70d yellow-#FFEB3B #32CD32  #84FF4F  -->
 </resources>

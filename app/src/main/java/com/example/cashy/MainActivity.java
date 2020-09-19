@@ -290,6 +290,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // purchase later on
+                Intent intent = new Intent(MainActivity.this, PurchaseActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -410,8 +413,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        showPopup("Are you sure you want to exit?","exit","Yes","No",0,MainActivity.class);
     }
 
 
@@ -431,6 +433,7 @@ public class MainActivity extends AppCompatActivity {
             public void onRewardedAdFailedToLoad(LoadAdError loadAdError) {
                 super.onRewardedAdFailedToLoad(loadAdError);
                 Log.d("ads", "onRewardedAdLoaded: Ads Failed");
+//                Toast.makeText(MainActivity.this, "Ads failed to load...", Toast.LENGTH_SHORT).show();
 
             }
         };
@@ -458,7 +461,10 @@ public class MainActivity extends AppCompatActivity {
                         databaseReference.child(user.getUid()).updateChildren(results).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-
+                                //show dialog
+                                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -478,7 +484,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onRewardedAdClosed() {
                     super.onRewardedAdClosed();
                     watchAds.setEnabled(false);
-                    loadAd();
+                    Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 @Override
@@ -489,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onRewardedAdFailedToShow(AdError adError) {
                     super.onRewardedAdFailedToShow(adError);
-                    Toast.makeText(MainActivity.this, "Please try again...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Ads not loaded...", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -695,9 +703,16 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }else if(status.equals("notEnough")){
-                    Toast.makeText(MainActivity.this, "Loading ads...", Toast.LENGTH_SHORT).show();
                     showAd();
-                }else{
+                }else if(status.equals("exit")){
+                    Log.d("exit", "onClick: exit yep");
+                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                    homeIntent.addCategory( Intent.CATEGORY_HOME );
+                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(homeIntent);
+                    finish();
+                }
+                else{
                     firebaseAuth.signOut();
                     checkUserStatus();
                 }
@@ -713,7 +728,12 @@ public class MainActivity extends AppCompatActivity {
                     }else if(status.equals("notEnough")){
                         startActivity(new Intent(MainActivity.this,PurchaseActivity.class));
                         finish();
-                    }else{
+                    }else if(status.equals("exit")){
+                        myDialog.dismiss();
+                    }else if(status.equals("logout")){
+                        myDialog.dismiss();
+                    }
+                    else{
                         myDialog.dismiss();
                         checkConnection();
                     }

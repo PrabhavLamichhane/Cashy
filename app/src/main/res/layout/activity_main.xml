@@ -365,7 +365,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="Wartch video and earn gems."/>
+                        android:text="Watch video and earn gems."/>
                 </LinearLayout>
 
             </LinearLayout>
